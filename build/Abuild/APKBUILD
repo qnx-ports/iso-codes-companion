@@ -1,0 +1,34 @@
+# Alpine-Maintainer: Natanael Copa <ncopa@alpinelinux.org>
+# Maintainer: Felix Xing <fxing@qnx.com>
+pkgname=iso-codes
+pkgver=4.18.0
+pkgrel=0
+pkgdesc="ISO codes and their translations"
+url="https://salsa.debian.org/iso-codes-team/iso-codes"
+arch="noarch"
+license="LGPL-2.1-or-later"
+depends_dev="$pkgname=$pkgver-r$pkgrel"
+makedepends="python3 gettext"
+subpackages="$pkgname-lang $pkgname-dev"
+source="https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v$pkgver/iso-codes-v$pkgver.tar.bz2"
+builddir="$srcdir/iso-codes-v$pkgver"
+
+build() {
+    ./configure \
+        --host=$CHOST \
+        --build=$CBUILD \
+        --prefix=/usr
+    make
+}
+
+check() {
+    make check
+}
+
+package() {
+    make DESTDIR="$pkgdir" pkgconfigdir=/usr/lib/pkgconfig install
+}
+
+sha512sums="
+eb9a00e700ca67097e7de8822be4ea7c55874319cb0a8515e90c048584d3fb30cdca14c2da1470e8cd0651c4e2af605bac6989119463c53532d867bf4881859d  iso-codes-v4.18.0.tar.bz2
+"
