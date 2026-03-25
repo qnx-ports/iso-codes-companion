@@ -2,7 +2,7 @@
 # Maintainer: Felix Xing <fxing@qnx.com>
 pkgname=iso-codes
 pkgver=4.18.0
-pkgrel=${pkgrel:-0}
+pkgrel=0
 pkgdesc="ISO codes and their translations"
 url="https://salsa.debian.org/iso-codes-team/iso-codes"
 arch="noarch"
@@ -29,7 +29,6 @@ package() {
     make DESTDIR="$pkgdir" pkgconfigdir=/usr/lib/pkgconfig install
 }
 
-options="$options ${DISABLE_CHECK:+!check}"
 sha512sums="
 eb9a00e700ca67097e7de8822be4ea7c55874319cb0a8515e90c048584d3fb30cdca14c2da1470e8cd0651c4e2af605bac6989119463c53532d867bf4881859d  iso-codes-v4.18.0.tar.bz2
 "
